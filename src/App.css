@@ -1,0 +1,23 @@
+h2 {
+  font-size: 2em !important;
+}
+
+h4 {
+  margin-bottom: 0px !important;
+}
+
+.App {
+  text-align: center;
+}
+
+.narrow-panel {
+  margin: auto;
+  margin-top: 1em;
+  max-width: 200px;
+}
+
+.gameButton {
+  width: 36px;
+  height: 36px;
+  margin: 4px 2px;  
+}
