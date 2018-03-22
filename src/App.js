@@ -17,6 +17,13 @@ class App extends Component {
     this.setState(st => { return { newGameToggle: !st.newGameToggle }});
   }
 
+  clearScoreBoard = () => {
+    this.setState(st => { return { 
+      oScore: {losses: 0, ties: 0, wins: 0},
+      xScore: {losses: 0, ties: 0, wins: 0} }}
+    );
+  }
+
   outcome = result => {
     result === "X" 
       ? this.setState(st => { return { 
@@ -38,13 +45,13 @@ class App extends Component {
         <div className="App">
           { this.state.newGameToggle ? <Game myOutcome={this.outcome}/> : null }
           { this.state.newGameToggle ? null : <Game myOutcome={this.outcome}/> }
-          <Button onClick={this.startNewGame}>Start New Game</Button>
+          <Button onClick={this.startNewGame}>New Game</Button>
+          <Button onClick={this.clearScoreBoard}>Clear Score</Button>
         </div>
 
         <div className="row">
           <div className="scoreContainer">
-            <hr/>
-            <div className="panel panel-default">
+            <div className="panel panel-default increase-panel-top-margin">
               <div className="panel-heading">
                 <h3 className="panel-title">Score</h3>
               </div>

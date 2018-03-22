@@ -29,11 +29,15 @@ h5 {
 
 .scoreContainer {
   margin: auto;
-  width: 200px;
+  max-width: 200px;
 }
 
 .panel-condensed {
   margin-bottom: -20px !important;
+}
+
+.increase-panel-top-margin {
+  margin-top: 1.5em;
 }
 
 .darkBlue {
