@@ -8,7 +8,8 @@ export class Game extends Component {
                    xPlayerMoves: [],
                    oPlayerMoves: [],
                    winningSequence: null,
-                   gameOver: false
+                   gameOver: false,
+                   gameOutcome: null
                  }
   }
 
@@ -48,6 +49,10 @@ export class Game extends Component {
     return false;
   }
 
+  checkForTie = () => {
+    return this.state.xPlayerMoves.length === 4 && this.state.oPlayerMoves.length === 4;
+  }
+
   updatePlayerMoves = playerMovesArray => {
     this.state.currentPlayerMark === "X"
       ? this.setState(st => { return { xPlayerMoves: playerMovesArray }})
@@ -63,20 +68,26 @@ export class Game extends Component {
       : this.state.oPlayerMoves.map(m => m).concat(playerMovePosition);
     this.updatePlayerMoves(updatedMoves);
     if (this.checkForWin(updatedMoves)) {
-      this.setState(st => { return { gameOver: true }});
+      this.setState(st => { return { 
+        gameOver: true, 
+        gameOutcome: this.state.currentPlayerMark + " Wins"}});
+        this.props.myOutcome(this.state.currentPlayerMark);
     } else {
-      const nextPlayerMark = this.state.currentPlayerMark === "X" ? "O" : "X";
-      this.setState(st => { return { currentPlayerMark: nextPlayerMark, newGame: false }});
+      if (this.checkForTie()) {
+        this.setState(st => { return { 
+          gameOver: true, 
+          gameOutcome: "Tie"}});
+        this.props.myOutcome("Tie");
+      } else {
+        const nextPlayerMark = this.state.currentPlayerMark === "X" ? "O" : "X";
+        this.setState(st => { return { currentPlayerMark: nextPlayerMark, newGame: false }});
+      }
     }
-  }
-
-  startNewGame = () => {
-    window.location.href = '';
   }
 
   render = () => {
     return (
-      <div className="row">
+      <div className="row container-fluid">
         <div className="panel panel-primary narrow-panel">
           <div className="panel-heading">
             <h2 className="panel-title">Tic Tac Toe</h2>
@@ -86,8 +97,10 @@ export class Game extends Component {
               { this.state.gameOver 
                 ? <Button id="1"
                     ref={btn1 => this.button1 = btn1}
-                    className={this.state.winningSequence.includes(1) 
-                      ? "gameButton btn-success" 
+                    className={this.state.winningSequence !== null
+                      ? this.state.winningSequence.includes(1) 
+                        ? "gameButton btn-success" 
+                        : "gameButton"
                       : "gameButton"}
                     disabled>
                   </Button>
@@ -99,8 +112,11 @@ export class Game extends Component {
               }
               { this.state.gameOver 
                 ? <Button id="2"
-                    className={this.state.winningSequence.includes(2) 
-                      ? "gameButton btn-success" 
+                    ref={btn2 => this.button2 = btn2}
+                    className={this.state.winningSequence !== null
+                      ? this.state.winningSequence.includes(2) 
+                        ? "gameButton btn-success" 
+                        : "gameButton"
                       : "gameButton"}
                     disabled>
                   </Button>
@@ -111,8 +127,11 @@ export class Game extends Component {
               }
               { this.state.gameOver 
                 ? <Button id="3"
-                    className={this.state.winningSequence.includes(3) 
-                      ? "gameButton btn-success" 
+                    ref={btn3 => this.button3 = btn3}
+                    className={this.state.winningSequence !== null
+                      ? this.state.winningSequence.includes(3) 
+                        ? "gameButton btn-success" 
+                        : "gameButton"
                       : "gameButton"}
                     disabled>
                   </Button>
@@ -125,8 +144,11 @@ export class Game extends Component {
             <div className="row">
               { this.state.gameOver 
                 ? <Button id="4"
-                    className={this.state.winningSequence.includes(4) 
-                      ? "gameButton btn-success" 
+                    ref={btn4 => this.button4 = btn4}
+                    className={this.state.winningSequence !== null
+                      ? this.state.winningSequence.includes(4) 
+                        ? "gameButton btn-success" 
+                        : "gameButton"
                       : "gameButton"}
                     disabled>
                   </Button>
@@ -137,8 +159,11 @@ export class Game extends Component {
               }
               { this.state.gameOver 
                 ? <Button id="5"
-                    className={this.state.winningSequence.includes(5) 
-                      ? "gameButton btn-success" 
+                    ref={btn5 => this.button5 = btn5}
+                    className={this.state.winningSequence !== null
+                      ? this.state.winningSequence.includes(5) 
+                        ? "gameButton btn-success" 
+                        : "gameButton"
                       : "gameButton"}
                     disabled>
                   </Button>
@@ -149,8 +174,11 @@ export class Game extends Component {
               }
               { this.state.gameOver 
                 ? <Button id="6"
-                    className={this.state.winningSequence.includes(6) 
-                      ? "gameButton btn-success" 
+                    ref={btn6 => this.button6 = btn6}
+                    className={this.state.winningSequence !== null
+                      ? this.state.winningSequence.includes(6) 
+                        ? "gameButton btn-success" 
+                        : "gameButton"
                       : "gameButton"}
                     disabled>
                   </Button>
@@ -163,8 +191,11 @@ export class Game extends Component {
             <div className="row">
               { this.state.gameOver 
                 ? <Button id="7"
-                    className={this.state.winningSequence.includes(7) 
-                      ? "gameButton btn-success" 
+                    ref={btn7 => this.button7 = btn7}
+                    className={this.state.winningSequence !== null
+                      ? this.state.winningSequence.includes(7) 
+                        ? "gameButton btn-success" 
+                        : "gameButton"
                       : "gameButton"}
                     disabled>
                   </Button>
@@ -175,8 +206,11 @@ export class Game extends Component {
               }
               { this.state.gameOver 
                 ? <Button id="8"
-                    className={this.state.winningSequence.includes(8) 
-                      ? "gameButton btn-success" 
+                    ref={btn8 => this.button8 = btn8}
+                    className={this.state.winningSequence !== null
+                      ? this.state.winningSequence.includes(8) 
+                        ? "gameButton btn-success" 
+                        : "gameButton"
                       : "gameButton"}
                     disabled>
                   </Button>
@@ -187,8 +221,11 @@ export class Game extends Component {
               }
               { this.state.gameOver 
                 ? <Button id="9"
-                    className={this.state.winningSequence.includes(9) 
-                      ? "gameButton btn-success" 
+                    ref={btn9 => this.button9 = btn9}
+                    className={this.state.winningSequence !== null
+                      ? this.state.winningSequence.includes(9) 
+                        ? "gameButton btn-success" 
+                        : "gameButton"
                       : "gameButton"}
                     disabled>
                   </Button>
@@ -199,16 +236,14 @@ export class Game extends Component {
               }
             </div>
             <div>
-              <h4 className={ this.state.gameOver 
+              <h4 className={ this.state.gameOver && this.state.gameOutcome !== "Tie" 
                 ? "alert alert-success" 
-                : this.state.xPlayerMoves.length === 5 
-                  && this.state.oPlayerMoves.length === 4 
-                  ? "alert alert-warning"
+                : this.state.gameOutcome === "Tie" 
+                  ? "alert alert-warning" 
                   : "alert alert-info" }>
-                { this.state.gameOver 
+                { this.state.gameOver && this.state.gameOutcome !== "Tie"
                     ? `Player ${this.state.currentPlayerMark} Wins!` 
-                    : this.state.xPlayerMoves.length === 5 
-                      && this.state.oPlayerMoves.length === 4 
+                    : this.state.gameOutcome === "Tie" 
                       ? `It's A Tie!`
                       : `Player ${this.state.currentPlayerMark}'s Turn`
                 }
