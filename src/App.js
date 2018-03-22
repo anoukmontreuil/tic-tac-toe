@@ -35,46 +35,47 @@ class App extends Component {
     return (
       <div className="App">
 
+        <div className="App">
+          { this.state.newGameToggle ? <Game myOutcome={this.outcome}/> : null }
+          { this.state.newGameToggle ? null : <Game myOutcome={this.outcome}/> }
+          <Button onClick={this.startNewGame}>Start New Game</Button>
+        </div>
+
         <div className="row">
-          <div className="col-xs-6">
+          <div className="scoreContainer">
+            <hr/>
             <div className="panel panel-default">
               <div className="panel-heading">
-                <h4 className="panel-title">Score</h4>
+                <h3 className="panel-title">Score</h3>
               </div>
-              <div className="panel-body">
+              <div className="panel-body panel-condensed">
                 <table className="table table-condensed">
                   <thead>
                     <tr>
-                      <th>Player</th>
-                      <th>Won</th>
-                      <th>Lost</th>
-                      <th>Tie</th>
+                      <th className="darkBlue">Player</th>
+                      <th className="darkGreen">Won</th>
+                      <th className="darkRed">Lost</th>
+                      <th className="darkYellow">Tie</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>O</td>
-                      <td>{this.state.oScore.wins}</td>
-                      <td>{this.state.oScore.losses}</td>
-                      <td>{this.state.oScore.ties}</td>
+                      <td className="darkBlue"><strong>O</strong></td>
+                      <td className="darkGreen">{this.state.oScore.wins}</td>
+                      <td className="darkRed">{this.state.oScore.losses}</td>
+                      <td className="darkYellow">{this.state.oScore.ties}</td>
                     </tr>
                     <tr>
-                      <td>X</td>
-                      <td>{this.state.xScore.wins}</td>
-                      <td>{this.state.xScore.losses}</td>
-                      <td>{this.state.xScore.ties}</td>
+                      <td className="darkBlue"><strong>X</strong></td>
+                      <td className="darkGreen">{this.state.xScore.wins}</td>
+                      <td className="darkRed">{this.state.xScore.losses}</td>
+                      <td className="darkYellow">{this.state.xScore.ties}</td>
                     </tr>
                   </tbody>
                 </table> 
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="App">
-          { this.state.newGameToggle ? <Game myOutcome={this.outcome}/> : null }
-          { this.state.newGameToggle ? null : <Game myOutcome={this.outcome}/> }
-          <Button onClick={this.startNewGame}>Restart</Button>
         </div>
 
       </div>

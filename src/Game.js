@@ -236,7 +236,7 @@ export class Game extends Component {
               }
             </div>
             <div>
-              <h4 className={ this.state.gameOver && this.state.gameOutcome !== "Tie" 
+              <h5 className={ this.state.gameOver && this.state.gameOutcome !== "Tie" 
                 ? "alert alert-success" 
                 : this.state.gameOutcome === "Tie" 
                   ? "alert alert-warning" 
@@ -247,7 +247,7 @@ export class Game extends Component {
                       ? `It's A Tie!`
                       : `Player ${this.state.currentPlayerMark}'s Turn`
                 }
-              </h4>
+              </h5>
             </div>
           </div>
         </div>

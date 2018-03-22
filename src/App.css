@@ -2,7 +2,12 @@ h2 {
   font-size: 2em !important;
 }
 
-h4 {
+h3 {
+  font-weight: bold !important;
+}
+
+h5 {
+  font-weight: bold !important;
   margin-bottom: 0px !important;
 }
 
@@ -22,6 +27,27 @@ h4 {
   margin: 4px 2px;  
 }
 
-.ScoreTable {
+.scoreContainer {
   margin: auto;
+  width: 200px;
+}
+
+.panel-condensed {
+  margin-bottom: -20px !important;
+}
+
+.darkBlue {
+  color: rgb(49, 112, 143);
+}
+
+.darkGreen {
+  color: rgb(60, 118, 61);
+}
+
+.darkYellow {
+  color: rgb(138, 109, 59);
+}
+
+.darkRed {
+  color: rgb(169, 68, 66);
 }
